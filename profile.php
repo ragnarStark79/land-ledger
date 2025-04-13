@@ -29,7 +29,7 @@ if ($currentUser) {
 
         // Provide default values for missing fields
         $currentUser['created_at'] = $currentUser['created_at'] ? date('F j, Y', strtotime($currentUser['created_at'])) : 'Not provided';
-        $profilePictureUrl = "https://c4.wallpaperflare.com/wallpaper/675/576/46/uzumaki-naruto-naruto-shippuuden-anime-kyuubi-wallpaper-preview.jpg"; // Replace with the desired default URL
+        $profilePictureUrl = "https://c4.wallpaperflare.com/wallpaper/994/815/596/vikings-vikings-tv-series-ragnar-lodbrok-travis-fimmel-wallpaper-preview.jpg"; // Replace with the desired default URL
     } catch (Exception $e) {
         die("Error fetching user data: " . $e->getMessage());
     }
