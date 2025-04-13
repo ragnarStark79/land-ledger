@@ -4,18 +4,12 @@ session_start();
 
 // Include database configuration
 require_once 'config/database.php';
+require_once 'includes/auth.php';
 
-// Check if user is already logged in
-if (isset($_SESSION['user_id'])) {
-    // Check if dashboard.php exists
-    if (file_exists('dashboard.php')) {
-        // Redirect to dashboard
-        header('Location: dashboard.php');
-        exit;
-    } else {
-        // Display an error message if dashboard.php is missing
-        die('Error: dashboard.php file is missing.');
-    }
+// Redirect logged-in users to the dashboard
+if (isLoggedIn()) {
+    header('Location: dashboard.php');
+    exit;
 }
 
 // Initialize variables
@@ -32,27 +26,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif (empty($password)) {
         $error = 'Please enter your password.';
     } else {
-        // Query the database for the user
-        $stmt = $pdo->prepare("SELECT id, email, name, password FROM users WHERE email = :email");
-        $stmt->bindParam(':email', $email);
-        $stmt->execute();
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        try {
+            // Query the database for the user
+            $stmt = $pdo->prepare("SELECT id, email, name, password FROM users WHERE email = :email");
+            $stmt->bindParam(':email', $email);
+            $stmt->execute();
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($user && password_verify($password, $user['password'])) {
-            // Set session variables
-            $_SESSION['user_id'] = $user['id'];
-            $_SESSION['user_email'] = $user['email'];
-            $_SESSION['user_name'] = $user['name'];
+            if ($user && password_verify($password, $user['password'])) {
+                // Set session variables
+                $_SESSION['user_id'] = $user['id'];
+                $_SESSION['user_email'] = $user['email'];
+                $_SESSION['user_name'] = $user['name'];
+                $_SESSION['loggedin'] = true;
 
-            // Redirect to intended page or dashboard
-            $redirect = isset($_GET['redirect']) ? $_GET['redirect'] : 'dashboard.php';
-            header("Location: $redirect");
-            exit;
-        } else {
-            $error = 'Invalid email or password.';
+                // Redirect to intended page or dashboard
+                $redirect = isset($_GET['redirect']) ? $_GET['redirect'] : 'dashboard.php';
+                header("Location: $redirect");
+                exit;
+            } else {
+                $error = 'Invalid email or password.';
+            }
+        } catch (PDOException $e) {
+            $error = 'Database error: ' . $e->getMessage(); // Debugging statement
         }
     }
 }
+
+// Display message if passed via query parameter
+$message = isset($_GET['message']) ? htmlspecialchars($_GET['message']) : '';
 
 // Include header
 include 'includes/header.php';
@@ -60,6 +62,11 @@ include 'includes/header.php';
 
 <main class="py-12">
     <div class="container-custom max-w-md mx-auto">
+        <?php if (!empty($message)): ?>
+            <div class="bg-blue-50 border-l-4 border-blue-400 p-4 mb-6">
+                <p class="text-sm text-blue-700"><?php echo $message; ?></p>
+            </div>
+        <?php endif; ?>
         <div class="mb-8 text-center">
             <h1 class="text-2xl font-bold mb-2">Login to Your Account</h1>
             <p class="text-gray-600">Access your property records and tax information</p>

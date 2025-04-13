@@ -31,35 +31,35 @@
         <div>
           <h3 class="text-lg font-semibold text-white mb-6">Quick Links</h3>
           <ul class="space-y-3">
-            <li><a href="index.php" class="hover:text-white transition-colors">Home</a></li>
-            <li><a href="index.php#services" class="hover:text-white transition-colors">Services</a></li>
-            <li><a href="property-records.php" class="hover:text-white transition-colors">Land Records</a></li>
-            <li><a href="property-tax.php" class="hover:text-white transition-colors">Property Taxes</a></li>
-            <li><a href="maps-surveys.php" class="hover:text-white transition-colors">Maps & Surveys</a></li>
-            <li><a href="recent-updates.php" class="hover:text-white transition-colors">Recent Updates</a></li>
+            <li><a href="<?php echo isLoggedIn() ? 'index.php' : 'login.php?message=Please log in to access this page'; ?>" class="hover:text-white transition-colors">Home</a></li>
+            <li><a href="<?php echo isLoggedIn() ? 'index.php#services' : 'login.php?message=Please log in to access this page'; ?>" class="hover:text-white transition-colors">Services</a></li>
+            <li><a href="<?php echo isLoggedIn() ? 'property-records.php' : 'login.php?message=Please log in to access this page'; ?>" class="hover:text-white transition-colors">Land Records</a></li>
+            <li><a href="<?php echo isLoggedIn() ? 'property-tax.php' : 'login.php?message=Please log in to access this page'; ?>" class="hover:text-white transition-colors">Property Taxes</a></li>
+            <li><a href="<?php echo isLoggedIn() ? 'maps-surveys.php' : 'login.php?message=Please log in to access this page'; ?>" class="hover:text-white transition-colors">Maps & Surveys</a></li>
+            <li><a href="<?php echo isLoggedIn() ? 'recent-updates.php' : 'login.php?message=Please log in to access this page'; ?>" class="hover:text-white transition-colors">Recent Updates</a></li>
           </ul>
         </div>
         
         <div>
           <h3 class="text-lg font-semibold text-white mb-6">Help & Support</h3>
           <ul class="space-y-3">
-            <li><a href="faqs.php" class="hover:text-white transition-colors">FAQs</a></li>
-            <li><a href="help-center.php" class="hover:text-white transition-colors">Help Center</a></li>
-            <li><a href="support.php" class="hover:text-white transition-colors">Technical Support</a></li>
-            <li><a href="report-issue.php" class="hover:text-white transition-colors">Report an Issue</a></li>
-            <li><a href="feedback.php" class="hover:text-white transition-colors">Feedback</a></li>
-            <li><a href="contact-us.php" class="hover:text-white transition-colors">Contact Us</a></li>
+            <li><a href="<?php echo isLoggedIn() ? 'faqs.php' : 'login.php?message=Please log in to access this page'; ?>" class="hover:text-white transition-colors">FAQs</a></li>
+            <li><a href="<?php echo isLoggedIn() ? 'help-center.php' : 'login.php?message=Please log in to access this page'; ?>" class="hover:text-white transition-colors">Help Center</a></li>
+            <li><a href="<?php echo isLoggedIn() ? 'support.php' : 'login.php?message=Please log in to access this page'; ?>" class="hover:text-white transition-colors">Technical Support</a></li>
+            <li><a href="<?php echo isLoggedIn() ? 'report-issue.php' : 'login.php?message=Please log in to access this page'; ?>" class="hover:text-white transition-colors">Report an Issue</a></li>
+            <li><a href="<?php echo isLoggedIn() ? 'feedback.php' : 'login.php?message=Please log in to access this page'; ?>" class="hover:text-white transition-colors">Feedback</a></li>
+            <li><a href="<?php echo isLoggedIn() ? 'contact-us.php' : 'login.php?message=Please log in to access this page'; ?>" class="hover:text-white transition-colors">Contact Us</a></li>
           </ul>
         </div>
         
         <div>
           <h3 class="text-lg font-semibold text-white mb-6">Legal</h3>
           <ul class="space-y-3">
-            <li><a href="terms.php" class="hover:text-white transition-colors">Terms of Service</a></li>
-            <li><a href="privacy.php" class="hover:text-white transition-colors">Privacy Policy</a></li>
-            <li><a href="refund.php" class="hover:text-white transition-colors">Refund Policy</a></li>
-            <li><a href="cookie.php" class="hover:text-white transition-colors">Cookie Policy</a></li>
-            <li><a href="accessibility.php" class="hover:text-white transition-colors">Accessibility</a></li>
+            <li><a href="<?php echo isLoggedIn() ? 'terms.php' : 'login.php?message=Please log in to access this page'; ?>" class="hover:text-white transition-colors">Terms of Service</a></li>
+            <li><a href="<?php echo isLoggedIn() ? 'privacy.php' : 'login.php?message=Please log in to access this page'; ?>" class="hover:text-white transition-colors">Privacy Policy</a></li>
+            <li><a href="<?php echo isLoggedIn() ? 'refund.php' : 'login.php?message=Please log in to access this page'; ?>" class="hover:text-white transition-colors">Refund Policy</a></li>
+            <li><a href="<?php echo isLoggedIn() ? 'cookie.php' : 'login.php?message=Please log in to access this page'; ?>" class="hover:text-white transition-colors">Cookie Policy</a></li>
+            <li><a href="<?php echo isLoggedIn() ? 'accessibility.php' : 'login.php?message=Please log in to access this page'; ?>" class="hover:text-white transition-colors">Accessibility</a></li>
           </ul>
         </div>
       </div>

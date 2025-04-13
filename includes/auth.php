@@ -1,5 +1,5 @@
 <?php
-// Start session if not already started
+// Ensure the session is started
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -10,7 +10,7 @@ if (session_status() === PHP_SESSION_NONE) {
  * @return bool True if user is logged in, false otherwise
  */
 function isLoggedIn() {
-    return isset($_SESSION['user_id']);
+    return isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true;
 }
 
 /**
@@ -21,7 +21,7 @@ function isLoggedIn() {
 function getCurrentUser() {
     if (isLoggedIn()) {
         return [
-            'id' => $_SESSION['user_id'],
+            'id' => $_SESSION['user_id'] ?? null,
             'name' => $_SESSION['user_name'] ?? 'User',
             'email' => $_SESSION['user_email'] ?? 'user@example.com'
         ];
@@ -35,7 +35,8 @@ function getCurrentUser() {
  * @param string $redirect URL to redirect to if not logged in
  */
 function requireLogin($redirect = 'login.php') {
-    if (!isLoggedIn()) {
+    // Prevent redirection loop
+    if (!isLoggedIn() && basename($_SERVER['PHP_SELF']) !== $redirect) {
         header("Location: $redirect");
         exit;
     }

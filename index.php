@@ -1,6 +1,9 @@
 <?php
 // Include header
 include 'includes/header.php';
+
+// Start session at the top of the file
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -307,11 +310,11 @@ include 'includes/header.php';
                 Simplifying access to land records and making property tax payments easier, more transparent, and efficient for all citizens.
               </p>
               <div class="flex flex-wrap gap-4 pt-2">
-                <a href="property-records.php" class="btn btn-primary">
+                <a href="#" onclick="checkLoginAndRedirect('property-records.php')" class="btn btn-primary">
                   <i class="fa-solid fa-compass mr-2"></i>
                   Explore Records
                 </a>
-                <a href="property-tax.php" class="btn btn-secondary">
+                <a href="#" onclick="checkLoginAndRedirect('property-tax.php')" class="btn btn-secondary">
                   <i class="fa-solid fa-receipt mr-2"></i>
                   Pay Taxes
                 </a>
@@ -343,19 +346,19 @@ include 'includes/header.php';
                 <div class="bg-muted rounded-lg p-4 mb-5">
                   <h3 class="text-lg font-medium mb-2">Quick Access</h3>
                   <div class="grid grid-cols-2 gap-3">
-                    <a href="property-records.php" class="btn btn-outline w-full text-sm py-4 h-auto">
+                    <a href="#" onclick="checkLoginAndRedirect('property-records.php')" class="btn btn-outline w-full text-sm py-4 h-auto">
                       <i class="fa-solid fa-file-lines text-lg block mb-1"></i>
                       Land Records
                     </a>
-                    <a href="property-tax.php" class="btn btn-outline w-full text-sm py-4 h-auto">
+                    <a href="#" onclick="checkLoginAndRedirect('property-tax.php')" class="btn btn-outline w-full text-sm py-4 h-auto">
                       <i class="fa-solid fa-landmark text-lg block mb-1"></i>
                       Property Tax
                     </a>
-                    <a href="maps-surveys.php" class="btn btn-outline w-full text-sm py-4 h-auto">
+                    <a href="#" onclick="checkLoginAndRedirect('maps-surveys.php')" class="btn btn-outline w-full text-sm py-4 h-auto">
                       <i class="fa-solid fa-map-location-dot text-lg block mb-1"></i>
                       Maps & Surveys
                     </a>
-                    <a href="tax-forms.php" class="btn btn-outline w-full text-sm py-4 h-auto">
+                    <a href="#" onclick="checkLoginAndRedirect('tax-forms.php')" class="btn btn-outline w-full text-sm py-4 h-auto">
                       <i class="fa-solid fa-certificate text-lg block mb-1"></i>
                       Certificates
                     </a>
@@ -526,7 +529,7 @@ include 'includes/header.php';
                 </div>
               </div>
               
-              <button class="btn btn-primary" onclick="window.location.href='search-records.php';">
+              <button class="btn btn-primary" onclick="checkLoginAndRedirect('search-records.php');">
                 <i class="fa-solid fa-search mr-2"></i>
                 Search Records
               </button>
@@ -572,7 +575,7 @@ include 'includes/header.php';
                       </select>
                     </div>
                   </div>
-                  <button type="button" class="btn btn-primary w-full" onclick="window.location.href='search-records.php';">
+                  <button type="button" class="btn btn-primary w-full" onclick="checkLoginAndRedirect('search-records.php');">
                     Search Records
                   </button>
                   <p class="text-xs text-gray-500 text-center">
@@ -608,7 +611,7 @@ include 'includes/header.php';
               <p class="text-gray-600 mb-6">
                 Estimate your property taxes based on current rates, property value, and applicable exemptions.
               </p>
-              <a href="taxes.php" class="btn btn-outline w-full">Calculate Now</a>
+              <a href="#" onclick="checkLoginAndRedirect('taxes.php')" class="btn btn-outline w-full">Calculate Now</a>
             </div>
             
             <div class="card p-6 bg-gradient-to-br from-white to-muted border-0 transform scale-105 shadow-lg">
@@ -622,7 +625,7 @@ include 'includes/header.php';
               <p class="text-gray-600 mb-6">
                 Pay your property taxes securely using multiple payment methods with instant receipt generation.
               </p>
-              <a href="taxes.php" class="btn btn-primary w-full">Pay Taxes</a>
+              <a href="#" onclick="checkLoginAndRedirect('taxes.php')" class="btn btn-primary w-full">Pay Taxes</a>
             </div>
             
             <div class="card p-6 bg-gradient-to-br from-white to-muted border-0">
@@ -680,7 +683,7 @@ include 'includes/header.php';
                 <i class="fa-solid fa-circle-info mr-1 text-gov-700"></i>
                 Tax rates may vary based on property type, location, and usage
               </p>
-              <a href="terms.php" class="text-primary font-medium hover:underline inline-flex items-center">
+              <a href="#" onclick="checkLoginAndRedirect('terms.php')" class="text-primary font-medium hover:underline inline-flex items-center">
                 View complete tax policy
                 <i class="fa-solid fa-arrow-right ml-1"></i>
               </a>
@@ -967,7 +970,42 @@ include 'includes/header.php';
    
   
   <script>
-    
+    // JavaScript function to check login status and redirect
+    async function checkLoginAndRedirect(url) {
+      try {
+        const response = await fetch('check_login.php');
+        const result = await response.json();
+
+        if (result.loggedIn) {
+          if (window.location.pathname !== `/${url}`) {
+            window.location.href = url;
+          }
+        } else {
+          alert('You are not logged in. Please log in first.');
+          window.location.href = 'login.php';
+        }
+      } catch (error) {
+        console.error('Error checking login status:', error);
+        alert('An error occurred. Please try again.');
+      }
+    }
+
+    // Fix for invalid querySelector
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href').substring(1); // Remove '#' from href
+        if (targetId) { // Ensure targetId is not empty
+          const target = document.getElementById(targetId); // Use getElementById instead
+          if (target) {
+            window.scrollTo({
+              top: target.offsetTop - 80,
+              behavior: 'smooth'
+            });
+          }
+        }
+      });
+    });
 
     // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {

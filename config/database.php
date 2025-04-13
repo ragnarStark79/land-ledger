@@ -1,13 +1,17 @@
 <?php
-$host = 'localhost'; // Database host
-$dbname = 'vibrant_land_ledger'; // Database name
-$username = 'root'; // Database username
-$password = ''; // Database password
+// Database configuration for XAMPP MySQL
+$host = 'localhost'; // XAMPP MySQL server
+$dbname = 'vibrant_land_ledger'; // Replace with your database name
+$username = 'root'; // Default XAMPP MySQL username
+$password = ''; // Default XAMPP MySQL password (empty by default)
 
 try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+    // Create a new PDO instance
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password);
+    // Set PDO error mode to exception
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
+    // Handle connection error
     die("Database connection failed: " . $e->getMessage());
 }
 
