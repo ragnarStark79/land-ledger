@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->bindParam(':password', $hashed_password);
 
             if ($stmt->execute()) {
-                $success = 'Registration successful. You can now log in.';
+                $success = 'Registration successful. <a href="login.php" class="text-blue-500 underline">Go to login</a> and log in there.';
             } else {
                 $error = 'An error occurred. Please try again.';
             }
@@ -64,36 +64,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 include 'includes/header.php';
 ?>
 
-<main class="py-12 bg-gradient-to-b from-gradient-start to-gradient-end min-h-screen">
+<main class="py-12 bg-gradient-to-b from-blue-500 via-purple-500 to-pink-500 min-h-screen">
   <div class="container mx-auto">
-    <div class="max-w-lg mx-auto bg-white p-8 rounded-lg shadow-lg">
-      <h1 class="text-3xl font-bold text-center mb-6">Register</h1>
-      <form action="register.php" method="POST" enctype="multipart/form-data" class="space-y-4">
+    <div class="max-w-lg mx-auto bg-white p-10 rounded-lg shadow-2xl">
+      <?php if (!empty($success)): ?>
+        <div class="mb-6 p-4 bg-green-100 text-green-800 rounded-lg">
+          <?php echo $success; ?>
+        </div>
+      <?php elseif (!empty($error)): ?>
+        <div class="mb-6 p-4 bg-red-100 text-red-800 rounded-lg">
+          <?php echo $error; ?>
+        </div>
+      <?php endif; ?>
+      <h1 class="text-4xl font-extrabold text-center mb-8 text-gradient bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-pink-500">Create Your Account</h1>
+      <form action="register.php" method="POST" enctype="multipart/form-data" class="space-y-6">
         <div>
-          <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
-          <input type="text" id="name" name="name" class="input w-full border-gray-300 rounded-md shadow-sm focus:ring-gradient-start focus:border-gradient-start" required>
+          <label for="name" class="block text-sm font-semibold text-gray-800">Full Name</label>
+          <input type="text" id="name" name="name" class="input w-full border-gray-300 rounded-lg shadow-sm focus:ring-purple-500 focus:border-purple-500" required>
         </div>
         <div>
-          <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
-          <input type="email" id="email" name="email" class="input w-full border-gray-300 rounded-md shadow-sm focus:ring-gradient-start focus:border-gradient-start" required>
+          <label for="email" class="block text-sm font-semibold text-gray-800">Email Address</label>
+          <input type="email" id="email" name="email" class="input w-full border-gray-300 rounded-lg shadow-sm focus:ring-purple-500 focus:border-purple-500" required>
         </div>
         <div>
-          <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-          <input type="password" id="password" name="password" class="input w-full border-gray-300 rounded-md shadow-sm focus:ring-gradient-start focus:border-gradient-start" required>
+          <label for="password" class="block text-sm font-semibold text-gray-800">Password</label>
+          <input type="password" id="password" name="password" class="input w-full border-gray-300 rounded-lg shadow-sm focus:ring-purple-500 focus:border-purple-500" required>
         </div>
         <div>
-          <label for="confirm_password" class="block text-sm font-medium text-gray-700">Confirm Password</label>
-          <input type="password" id="confirm_password" name="confirm_password" class="input w-full border-gray-300 rounded-md shadow-sm focus:ring-gradient-start focus:border-gradient-start" required>
+          <label for="confirm_password" class="block text-sm font-semibold text-gray-800">Confirm Password</label>
+          <input type="password" id="confirm_password" name="confirm_password" class="input w-full border-gray-300 rounded-lg shadow-sm focus:ring-purple-500 focus:border-purple-500" required>
         </div>
         <div>
-          <label for="dob" class="block text-sm font-medium text-gray-700">Date of Birth</label>
-          <input type="date" id="dob" name="dob" class="input w-full border-gray-300 rounded-md shadow-sm focus:ring-gradient-start focus:border-gradient-start" required>
+          <label for="dob" class="block text-sm font-semibold text-gray-800">Date of Birth</label>
+          <input type="date" id="dob" name="dob" class="input w-full border-gray-300 rounded-lg shadow-sm focus:ring-purple-500 focus:border-purple-500" required>
         </div>
         <div>
-          <label for="address" class="block text-sm font-medium text-gray-700">Address</label>
-          <textarea id="address" name="address" class="input w-full border-gray-300 rounded-md shadow-sm focus:ring-gradient-start focus:border-gradient-start" required></textarea>
+          <label for="address" class="block text-sm font-semibold text-gray-800">Address</label>
+          <textarea id="address" name="address" class="input w-full border-gray-300 rounded-lg shadow-sm focus:ring-purple-500 focus:border-purple-500" required></textarea>
         </div>
-        <button type="submit" class="btn btn-primary w-full bg-gradient-to-r from-gradient-start to-gradient-end text-white font-bold py-2 rounded-md shadow-md hover:opacity-90">Register</button>
+        <button type="submit" class="btn w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold py-3 rounded-lg shadow-lg hover:opacity-90 focus:outline-none focus:ring-4 focus:ring-purple-300">Register</button>
       </form>
     </div>
   </div>
