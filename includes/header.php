@@ -99,8 +99,15 @@ $profilePictureUrl = "https://c4.wallpaperflare.com/wallpaper/994/815/596/viking
           <a href="index.php" class="<?php echo $current_page == 'index.php' ? 'text-primary' : 'text-foreground hover:text-primary'; ?> font-medium transition-colors">Home</a>
           
           <?php if ($isLoggedIn): ?>
-          <a href="property-records.php" class="<?php echo $current_page == 'property-records.php' ? 'text-primary' : 'text-foreground hover:text-primary'; ?> font-medium transition-colors">Records</a>
-          <a href="property-tax.php" class="<?php echo $current_page == 'property-tax.php' ? 'text-primary' : 'text-foreground hover:text-primary'; ?> font-medium transition-colors">Taxes</a>
+            <a href="property-records.php" class="<?php echo $current_page == 'property-records.php' ? 'text-primary' : 'text-foreground hover:text-primary'; ?> font-medium transition-colors">Records</a>
+            <a href="property-tax.php" class="<?php echo $current_page == 'property-tax.php' ? 'text-primary' : 'text-foreground hover:text-primary'; ?> font-medium transition-colors">Taxes</a>
+            <a href="maps-surveys.php" class="<?php echo $current_page == 'maps-surveys.php' ? 'text-primary' : 'text-foreground hover:text-primary'; ?> font-medium transition-colors">Maps & Surveys</a>
+            <a href="pay-tax.php" class="<?php echo $current_page == 'pay-tax.php' ? 'text-primary' : 'text-foreground hover:text-primary'; ?> font-medium transition-colors">Pay Tax</a>
+          <?php else: ?>
+            <a href="login.php?redirect=property-records.php" class="text-foreground hover:text-primary font-medium transition-colors">Records</a>
+            <a href="login.php?redirect=property-tax.php" class="text-foreground hover:text-primary font-medium transition-colors">Taxes</a>
+            <a href="login.php?redirect=maps-surveys.php" class="text-foreground hover:text-primary font-medium transition-colors">Maps & Surveys</a>
+            <a href="login.php?redirect=pay-tax.php" class="text-foreground hover:text-primary font-medium transition-colors">Pay Tax</a>
           <?php endif; ?>
           
           <a href="help-center.php" class="<?php echo $current_page == 'help-center.php' ? 'text-primary' : 'text-foreground hover:text-primary'; ?> font-medium transition-colors">Help</a>
@@ -153,8 +160,15 @@ $profilePictureUrl = "https://c4.wallpaperflare.com/wallpaper/994/815/596/viking
           <a href="index.php" class="<?php echo $current_page == 'index.php' ? 'text-primary' : 'text-foreground'; ?> hover:text-primary font-medium transition-colors">Home</a>
           
           <?php if ($isLoggedIn): ?>
-          <a href="property-records.php" class="<?php echo $current_page == 'property-records.php' ? 'text-primary' : 'text-foreground'; ?> hover:text-primary font-medium transition-colors">Records</a>
-          <a href="property-tax.php" class="<?php echo $current_page == 'property-tax.php' ? 'text-primary' : 'text-foreground'; ?> hover:text-primary font-medium transition-colors">Taxes</a>
+            <a href="property-records.php" class="<?php echo $current_page == 'property-records.php' ? 'text-primary' : 'text-foreground'; ?> hover:text-primary font-medium transition-colors">Records</a>
+            <a href="property-tax.php" class="<?php echo $current_page == 'property-tax.php' ? 'text-primary' : 'text-foreground'; ?> hover:text-primary font-medium transition-colors">Taxes</a>
+            <a href="maps-surveys.php" class="<?php echo $current_page == 'maps-surveys.php' ? 'text-primary' : 'text-foreground'; ?> hover:text-primary font-medium transition-colors">Maps & Surveys</a>
+            <a href="pay-tax.php" class="<?php echo $current_page == 'pay-tax.php' ? 'text-primary' : 'text-foreground'; ?> hover:text-primary font-medium transition-colors">Pay Tax</a>
+          <?php else: ?>
+            <a href="login.php?redirect=property-records.php" class="text-foreground hover:text-primary font-medium transition-colors">Records</a>
+            <a href="login.php?redirect=property-tax.php" class="text-foreground hover:text-primary font-medium transition-colors">Taxes</a>
+            <a href="login.php?redirect=maps-surveys.php" class="text-foreground hover:text-primary font-medium transition-colors">Maps & Surveys</a>
+            <a href="login.php?redirect=pay-tax.php" class="text-foreground hover:text-primary font-medium transition-colors">Pay Tax</a>
           <?php endif; ?>
           
           <a href="help-center.php" class="<?php echo $current_page == 'help-center.php' ? 'text-primary' : 'text-foreground'; ?> hover:text-primary font-medium transition-colors">Help</a>

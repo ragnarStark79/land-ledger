@@ -44,8 +44,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['user_email'] = $user['email'];
             $_SESSION['user_name'] = $user['name'];
 
-            // Redirect to dashboard
-            header('Location: dashboard.php');
+            // Redirect to intended page or dashboard
+            $redirect = isset($_GET['redirect']) ? $_GET['redirect'] : 'dashboard.php';
+            header("Location: $redirect");
             exit;
         } else {
             $error = 'Invalid email or password.';
