@@ -1,4 +1,4 @@
-# Vibrant Land Ledger Portal 🌾
+# Land Ledger 🌾
 
 The **Vibrant Land Ledger Portal** is a comprehensive web application designed to simplify land record management and property tax payments for farmers, property owners, and government officials. This platform provides a user-friendly interface to access, manage, and update land records, pay property taxes, and explore historical land data.
 
