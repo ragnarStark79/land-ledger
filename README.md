@@ -117,10 +117,4 @@ For any questions or support, feel free to reach out to us at:
 
 ---
 
-## 📜 License
-
-This project is licensed under the [MIT License](LICENSE).
-
----
-
 Thank you for using the Vibrant Land Ledger Portal! 🌱
