@@ -3,7 +3,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
 require_once 'includes/auth.php';
 $isLoggedIn = isLoggedIn();
 $currentUser = $isLoggedIn ? getCurrentUser() : null;
-$profilePictureUrl = "https://c4.wallpaperflare.com/wallpaper/994/815/596/vikings-vikings-tv-series-ragnar-lodbrok-travis-fimmel-wallpaper-preview.jpg"; // Default profile picture URL
+$profilePictureUrl = "https://c4.wallpaperflare.com/wallpaper/365/244/884/uchiha-itachi-naruto-shippuuden-anbu-silhouette-wallpaper-preview.jpg"; // Default profile picture URL
 ?>
 <!DOCTYPE html>
 <html lang="en">
