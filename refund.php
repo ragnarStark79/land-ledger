@@ -49,7 +49,7 @@ include 'includes/header.php';
                         
                         <h2 class="text-xl font-bold mb-4">1. Types of Payments</h2>
                         <p class="text-gray-600 mb-4">
-                            Through the Land Ledger platform, users may make several types of payments:
+                            Through this Land Ledger platform, users may make several types of payments:
                         </p>
                         <ul class="list-disc pl-6 mb-6 text-gray-600 space-y-2">
                             <li><strong>Property Tax Payments:</strong> Regular tax payments required by law</li>
